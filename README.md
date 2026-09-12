@@ -1,6 +1,6 @@
 # About:
 
-This app provides a cognitive exercise to train your working memory and fundamental mathmatics skills.
+This app provides cognitive exercises to improve your working memory and fundamental mathmatics skills.
 
 
 # Install:
@@ -12,13 +12,9 @@ Install necessary packages to your venv with:
 
 # Run:
 
-Use the terminal command to move to the project directory:
-
-    cd /path/CognitiveGames
-
 Start the program with the terminal command:
 
-    python app.py
+    python /path/CognitiveGames/app.py
 
 
 ## Options:
