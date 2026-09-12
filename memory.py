@@ -107,23 +107,39 @@ class Memory:
 
     def displayValue(self, digit):
         for d in digit:
-            print(f'{red}{d}{rst}')
+            print(f'\n  {pink}{d}{rst}')
             time.sleep(self.timer)
-            deleteLine()
+            deleteLine(nLines=2)
 
 
     @staticmethod
     def quiz(digit):
-        wasCorrect = False
+        # Get answer
+        correct = False
         while True:
-            ans = input('What was the value: ')
-            if ans:
-                if ans == digit:
-                    wasCorrect = True
+            answer = input('What was the value: ')
+            if answer:
+                if answer == digit:
+                    correct = True
                 break
             else:
                 deleteLine()
-        return ans, wasCorrect
+
+        # Verify
+        if not correct:
+            x = ''
+            for i in range(len(digit)):
+                try:
+                    if digit[i] != answer[i]:
+                        x += f'{red}{answer[i]}{rst}'
+                    else:
+                        x += answer[i]
+                except:
+                    x += f'{red}-{rst}'
+            print(f'Incorrect answer\n'
+                  f'* Number: {digit}\n'
+                  f'* Answer: {x}\n')
+        return correct
 
 
     def digitSpan(self, drill):
@@ -131,21 +147,10 @@ class Memory:
         numbers = self.getSequences()
         for value in numbers:
             self.displayValue(value)
-            answer, correct = self.quiz(value)
+            correct = self.quiz(value)
             if not correct:
-                x = ''
-                for i in range(len(value)):
-                    try:
-                        if value[i] != answer[i]:
-                            x += f'{red}{answer[i]}{rst}'
-                        else:
-                            x += answer[i]
-                    except:
-                        continue
-                print(f'Incorrect answer\n'
-                      f'* Value: {value}\n'
-                      f'* Answer: {x}\n')
                 return
+
 
     def digitSpanRev(self, drill):
         printBar(drill)
