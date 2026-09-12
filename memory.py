@@ -1,3 +1,5 @@
+import time
+
 from functions import *
 import numpy as np
 import random
@@ -103,16 +105,57 @@ class Memory:
         return values
 
 
+    def displayValue(self, digit):
+        for d in digit:
+            print(f'{red}{d}{rst}')
+            time.sleep(self.timer)
+            deleteLine()
+
+
+    @staticmethod
+    def quiz(digit):
+        wasCorrect = False
+        while True:
+            ans = input('What was the value: ')
+            if ans:
+                if ans == digit:
+                    wasCorrect = True
+                break
+            else:
+                deleteLine()
+        return ans, wasCorrect
+
+
     def digitSpan(self, drill):
         printBar(drill)
         numbers = self.getSequences()
-
+        for value in numbers:
+            self.displayValue(value)
+            answer, correct = self.quiz(value)
+            if not correct:
+                x = ''
+                for i in range(len(value)):
+                    try:
+                        if value[i] != answer[i]:
+                            x += f'{red}{answer[i]}{rst}'
+                        else:
+                            x += answer[i]
+                    except:
+                        continue
+                print(f'Incorrect answer\n'
+                      f'* Value: {value}\n'
+                      f'* Answer: {x}\n')
+                return
 
     def digitSpanRev(self, drill):
         printBar(drill)
         numbers = self.getSequences()
+        for value in numbers:
+            self.displayValue(value)
 
 
     def digitSpanOrdered(self, drill):
         printBar(drill)
         numbers = self.getSequences()
+        for value in numbers:
+            self.displayValue(value)
