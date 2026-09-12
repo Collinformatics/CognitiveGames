@@ -22,7 +22,7 @@ args = parser.parse_args()
 
 # Initialize classes
 mathGames = Math(maxValue=args.maxvalue, randomize=args.randomize)
-memoryGames = Memory(nRuns=10, timer=args.timer)
+memoryGames = Memory(timer=args.timer)
 
 if args.math:
     mathGames.run()
