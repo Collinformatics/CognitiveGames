@@ -6,9 +6,11 @@ import random
 import readline
 import sys
 
+
 """
     Improve your working memory with digit span games
 """
+
 
 # Colors
 red = '\033[31m'
@@ -122,8 +124,7 @@ class Memory:
                 if answer == digit:
                     correct = True
                 break
-            else:
-                deleteLine()
+            deleteLine()
 
         # Verify
         if not correct:

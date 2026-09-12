@@ -14,15 +14,15 @@ Install necessary packages to your venv with:
 
 Start the program with the terminal command:
 
-    python /path/CognitiveGames/app.py
+    python CognitiveGames/app.py
 
 
 ## Options:
 
 To begin with the mathematics games add the "--math" flag
 
-    python app.py --math
+    python CognitiveGames/app.py --math
 
 To begin with the memory games add the "--memory" flag
 
-    python app.py --memory
+    python CognitiveGames/app.py --memory

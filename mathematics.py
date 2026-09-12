@@ -4,6 +4,7 @@ import random
 import readline
 import sys
 
+
 """
     Master the fundamentals of mathematics by practicing the 
     multiplication & division tables, percentages, and fractions
@@ -15,6 +16,7 @@ red = '\033[31m'
 cyan = '\033[36m'
 pink = '\033[35m'
 rst = '\033[0m'
+
 
 class Math:
     def __init__(self, maxValue, randomize):
