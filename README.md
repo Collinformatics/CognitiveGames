@@ -7,6 +7,10 @@ To select an exercise, or adjust a setting, enter the number or letter associate
 
 # Install:
 
+Clone the repo:
+
+    git clone https://github.com/Collinformatics/CognitiveGames
+
 Install necessary packages to your venv with:
 
     pip install requirements.txt
