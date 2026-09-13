@@ -1,6 +1,8 @@
 # About:
 
-This app provides cognitive exercises to improve your working memory and fundamental mathmatics skills.
+This app provides cognitive exercises to improve your mathmatics skills and working memory.
+
+To select an exercise, or adjust a setting, enter the number or letter associated with the option when prompted.
 
 
 # Install:
