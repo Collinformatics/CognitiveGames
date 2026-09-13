@@ -42,8 +42,8 @@ class Memory:
 
 
     def run(self):
-        printBar()
         while True:
+            printBar()
             exercise = question(params=self.games)
             if exercise == 'Set Parameters':
                 self.params()
@@ -132,7 +132,7 @@ class Memory:
                 time.sleep(self.timer)
                 deleteLine(nLines=2)
                 print('\n')
-                time.sleep(0.5)
+                time.sleep(0.25)
                 deleteLine(nLines=2)
         finally:
             # Restore terminal
@@ -167,38 +167,38 @@ class Memory:
                     x += f'{red}-{rst}'
             print(f'Incorrect answer\n'
                   f'* Number: {digit}\n'
-                  f'* Answer: {x}\n')
+                  f'* Answer: {x}')
         return correct
 
 
     def digitSpan(self, drill):
         printBar(drill)
         numbers = self.getSequences()
-        for value in numbers:
+        for i, value in enumerate(numbers):
             self.displayValue(value)
             correct = self.quiz(digit=value)
             if not correct:
+                print(f'You correctly recalled {i} / {len(numbers)} values')
                 return
-        printBar()
 
 
     def digitSpanRev(self, drill):
         printBar(drill)
         numbers = self.getSequences()
-        for value in numbers:
+        for i, value in enumerate(numbers):
             self.displayValue(value)
             correct = self.quiz(digit=value[::-1])
             if not correct:
+                print(f'You correctly recalled {i} / {len(numbers)} values')
                 return
-        printBar()
 
 
     def digitSpanOrdered(self, drill):
         printBar(drill)
         numbers = self.getSequences()
-        for value in numbers:
+        for i, value in enumerate(numbers):
             self.displayValue(value)
             correct = self.quiz(digit=''.join(sorted(value)))
             if not correct:
+                print(f'You correctly recalled {i} / {len(numbers)} values')
                 return
-        printBar()
