@@ -2,8 +2,6 @@ import argparse
 from functions import *
 from mathematics import Math
 from memory import Memory
-import readline
-import sys
 
 
 parser = argparse.ArgumentParser(description='Cognitive Games')

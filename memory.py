@@ -1,5 +1,4 @@
 from functions import *
-import numpy as np
 import random
 import readline
 import sys
@@ -128,7 +127,7 @@ class Memory:
 
         try:
             for d in digit:
-                print(f'\n  {pink}{d}{rst}')
+                print(f'\n  {cyan}{d}{rst}')
                 time.sleep(self.timer)
                 deleteLine(nLines=2)
                 print('\n')
