@@ -13,7 +13,7 @@ Clone the repo:
 
 Install necessary packages to your venv with:
 
-    pip install requirements.txt
+    pip install -r requirements.txt
 
 
 # Run:

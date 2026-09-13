@@ -45,14 +45,14 @@ def printError(msg):
     print(f'{red}{msg}{rst}')
 
 
-def question(params):
+def question(params, rm=3):
     print('Select Exercise:')
     for k, v in params.items():
         print(f'  {k}: {v}')
     while True:
         x = input('Enter value: ')
         if x in params.keys():
-            deleteLine(nLines=len(params.keys())+3)
+            deleteLine(nLines=len(params.keys())+rm)
             return params[x]
         else:
             deleteLine()

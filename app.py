@@ -39,7 +39,7 @@ if args.memory:
 
 if __name__ == '__main__':
     while True:
-        exercise = question(games)
+        exercise = question(games, rm=2)
         if exercise == 'Mathematics':
             mathGames.run()
         elif exercise == 'Memory':
