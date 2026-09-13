@@ -77,9 +77,9 @@ class Math:
                 if x == '0':
                     break
                 elif x == '1':
-                    v = query(f'Set a new Max Value (min=3): ', int)
+                    v = getInput(f'Set a new Max Value (min=4): ', int)
                     if isinstance(v, int):
-                        if v > 3: # Max Value (-m / --maxvalue) cannot be ≤ 3
+                        if v >= 4: # Max Value (-m / --maxvalue) cannot be < 4
                             self.maxValue = v
                     deleteLine()
                 elif x == '2':
