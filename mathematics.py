@@ -131,7 +131,7 @@ class Math:
             v = val[i]
             val = np.delete(val, i)
             spaceV = " " * (lenV - len(str(v)))
-            print(f'\nValue: {pink}{v}{rst} ({r}/{nRounds})')
+            print(f'Value: {pink}{v}{rst} ({r}/{nRounds})')
     
             # Test
             if self.randomize:
@@ -149,6 +149,7 @@ class Math:
                             printError(f'  {spaceV}{v} x {spaceN}{n} = {x}')
                     else:
                         deleteLine()
+            print()
         printBar()
 
 

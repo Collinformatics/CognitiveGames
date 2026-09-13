@@ -38,7 +38,7 @@ def helpMe(instructions, drillType):
 def printBar(msg='', l=50):
     print('*' * l)
     if msg:
-        print(msg)
+        print(f'{msg}\n')
 
 
 def printError(msg):

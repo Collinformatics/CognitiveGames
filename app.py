@@ -38,8 +38,9 @@ if args.memory:
 
 
 if __name__ == '__main__':
+    printBar()
     while True:
-        exercise = question(games, rm=2)
+        exercise = question(games)
         if exercise == 'Mathematics':
             mathGames.run()
         elif exercise == 'Memory':

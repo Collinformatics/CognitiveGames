@@ -21,7 +21,7 @@ rst = '\033[0m'
 class Memory:
     def __init__(self, timer):
         self.maxLen = 10
-        self.minLen = 4
+        self.minLen = 5
         self.timer = timer
         self.games = {
             '0': 'Set Parameters',
@@ -95,7 +95,7 @@ class Memory:
 
     def params(self):
         delLine = 7
-        distance = 5
+        distance = 4
         while True:
             limUpper = self.maxLen - distance
             limLower = self.minLen + distance
