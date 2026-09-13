@@ -29,6 +29,7 @@ class Memory:
             '2': 'Digit Span Reversed',
             '3': 'Ordered Digit Span',
             'h': 'Help',
+            'e': 'End Game',
             'q': 'Quit'
         }
         self.instructions = {
@@ -54,8 +55,10 @@ class Memory:
                 self.digitSpanOrdered(exercise)
             elif exercise == 'Help':
                 helpMe(self.instructions, 'Digit Memorization')
-            else:
+            elif exercise == 'End Game':
                 break
+            else:
+                sys.exit()
 
 
     def params(self):

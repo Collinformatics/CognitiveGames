@@ -33,6 +33,7 @@ class Math:
             '3': 'Division Tables',
             '4': 'Percentages',
             '5': 'Fractions',
+            'e': 'End Game',
             'q': 'Quit'
         }
 
@@ -53,9 +54,11 @@ class Math:
                 self.percentages(exercise)
             elif exercise == 'Fractions':
                 self.fractions(exercise)
-            else:
+            elif exercise == 'End Game':
                 printBar()
                 break
+            else:
+                sys.exit()
 
 
     def params(self):
