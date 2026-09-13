@@ -77,7 +77,7 @@ class Memory:
             exercise = question(params=self.games)
             if exercise == 'Set Parameters':
                 self.params()
-            if exercise == 'Digit Span':
+            elif exercise == 'Digit Span':
                 self.digitSpan(exercise)
             elif exercise == 'Digit Span Reversed':
                 self.digitSpanRev(exercise)
