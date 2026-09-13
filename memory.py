@@ -7,7 +7,7 @@ import time
 
 
 """
-    Improve your working memory with digit span games
+    Improve your working memory with digit span exercises
 """
 
 
@@ -165,12 +165,12 @@ class Memory:
 
         try:
             for d in digit:
-                print(f'\n  {cyan}{d}{rst}')
+                print(f'  {cyan}{d}{rst}')
                 time.sleep(self.timer)
-                deleteLine(nLines=2)
-                print('\n')
+                deleteLine()
+                print('')
                 time.sleep(0.25)
-                deleteLine(nLines=2)
+                deleteLine()
         finally:
             # Restore terminal
             termios.tcsetattr(fd, termios.TCSANOW, old_settings)
