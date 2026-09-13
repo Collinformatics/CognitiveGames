@@ -58,6 +58,7 @@ class Math:
                 printBar()
                 break
             else:
+                printBar()
                 sys.exit()
 
 

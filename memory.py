@@ -89,6 +89,7 @@ class Memory:
                 printBar()
                 break
             else:
+                printBar()
                 sys.exit()
 
 
