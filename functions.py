@@ -36,3 +36,12 @@ def query(prompt, dType):
         return dType(i)
     except:
         return False
+
+
+def helpMe(instructions, drillType):
+    bar = '-'*50 + '\n'
+    print(bar)
+    print(f'\t\t{drillType}\n')
+    for k, v in instructions.items():
+        print(f'***** {k} *****\n{v}\n')
+    print(bar)

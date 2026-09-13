@@ -1,10 +1,10 @@
-import time
-
 from functions import *
 import numpy as np
 import random
 import readline
 import sys
+import termios
+import time
 
 
 """
@@ -29,7 +29,15 @@ class Memory:
             '1': 'Digit Span',
             '2': 'Digit Span Reversed',
             '3': 'Ordered Digit Span',
+            'h': 'Help',
             'q': 'Quit'
+        }
+        self.instructions = {
+            'Digit Span': 'Memorize a number sequence in their sequential order',
+            'Digit Span Reversed': 'Memorize a number sequence and then reverse their '
+                                   'sequential order',
+            'Ordered Digit Span': 'Memorize a number sequence and then arrange the '
+                                  'values in an increasing order from 0 to 9',
         }
 
 
@@ -44,7 +52,9 @@ class Memory:
             elif exercise == 'Digit Span Reversed':
                 self.digitSpanRev(exercise)
             elif exercise == 'Ordered Digit Span':
-                self.digitSpanRev(exercise)
+                self.digitSpanOrdered(exercise)
+            elif exercise == 'Help':
+                helpMe(self.instructions, 'Digit Memorization')
             else:
                 break
 
@@ -59,7 +69,7 @@ class Memory:
                 '0': 'Done',
                 '1': f'Maximum Length: {cyan}{self.maxLen}{rst}',
                 '2': f'Minimum Length: {cyan}{self.minLen}{rst}',
-                '3': f'Time Limit: {cyan}{self.timer}{rst}'
+                '3': f'Time Limit: {cyan}{self.timer} sec{rst}'
             }
 
             print('Change Parameter:')
@@ -108,10 +118,27 @@ class Memory:
 
 
     def displayValue(self, digit):
-        for d in digit:
-            print(f'\n  {pink}{d}{rst}')
-            time.sleep(self.timer)
-            deleteLine(nLines=2)
+        fd = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fd)
+
+        # Block terminal input
+        tmpSetting = termios.tcgetattr(fd)
+        tmpSetting[3] &= ~termios.ECHO
+        termios.tcsetattr(fd, termios.TCSANOW, tmpSetting)
+
+        try:
+            for d in digit:
+                print(f'\n  {pink}{d}{rst}')
+                time.sleep(self.timer)
+                deleteLine(nLines=2)
+                print('\n')
+                time.sleep(0.5)
+                deleteLine(nLines=2)
+        finally:
+            # Restore terminal
+            termios.tcsetattr(fd, termios.TCSANOW, old_settings)
+            # Flush any input that was typed during the animation
+            termios.tcflush(fd, termios.TCIOFLUSH)
 
 
     @staticmethod
@@ -123,6 +150,7 @@ class Memory:
             if answer:
                 if answer == digit:
                     correct = True
+                deleteLine()
                 break
             deleteLine()
 
@@ -148,9 +176,10 @@ class Memory:
         numbers = self.getSequences()
         for value in numbers:
             self.displayValue(value)
-            correct = self.quiz(value)
+            correct = self.quiz(digit=value)
             if not correct:
                 return
+        printBar()
 
 
     def digitSpanRev(self, drill):
@@ -158,6 +187,10 @@ class Memory:
         numbers = self.getSequences()
         for value in numbers:
             self.displayValue(value)
+            correct = self.quiz(digit=value[::-1])
+            if not correct:
+                return
+        printBar()
 
 
     def digitSpanOrdered(self, drill):
@@ -165,3 +198,7 @@ class Memory:
         numbers = self.getSequences()
         for value in numbers:
             self.displayValue(value)
+            correct = self.quiz(digit=''.join(sorted(value)))
+            if not correct:
+                return
+        printBar()
