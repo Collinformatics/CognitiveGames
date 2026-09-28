@@ -74,6 +74,8 @@ class Math:
             for k, v in params.items():
                 print(f'  {k}: {v}')
             x = input('Select Option: ')
+            if x == '':
+                break
             if x in params.keys():
                 if x == '0':
                     break

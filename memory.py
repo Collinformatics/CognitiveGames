@@ -95,10 +95,9 @@ class Memory:
 
     def params(self):
         delLine = 7
-        distance = 4
+        minDistance = 4
         while True:
-            limUpper = self.maxLen - distance
-            limLower = self.minLen + distance
+            limLower = minDistance + 2
             params = {
                 '0': 'Done',
                 '1': f'Maximum Length: {cyan}{self.maxLen}{rst}',
@@ -110,21 +109,27 @@ class Memory:
             for k, v in params.items():
                 print(f'  {k}: {v}')
             x = input('Select Option: ')
+            if x == '':
+                break
             if x in params.keys():
                 if x == '0':
                     break
                 elif x == '1':
                     v = getInput(f'Maximum Digit Length (min={limLower}): ', int)
-                    if isinstance(v, int):
-                        if v >= limLower:
-                            self.maxLen = v
+                    if isinstance(v, int) and v >= limLower:
+                        self.maxLen = v
+                    distance = self.maxLen - self.minLen
+                    if distance < minDistance:
+                        self.minLen -= minDistance - distance
                 elif x == '2':
-                    v = getInput(f'Minimum Digit Length (max={limUpper}): ', int)
+                    v = getInput(f'Minimum Digit Length: ', int)
                     if isinstance(v, int):
-                        if v <= limUpper:
-                            self.minLen = v
+                        self.minLen = v
+                    distance = self.maxLen - self.minLen
+                    if distance < minDistance:
+                        self.maxLen += minDistance - distance
                 elif x == '3':
-                    v = getInput(f'Set Time Limit (min=1): ', float)
+                    v = getInput(f'Set Time Limit: ', float)
                     if isinstance(v, float):
                         if v > 0:
                             self.timer = v
