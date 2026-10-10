@@ -7,8 +7,10 @@ from memory import Memory
 parser = argparse.ArgumentParser(description='Cognitive Games')
 parser.add_argument('--math', action='store_true',
                     help='Begin with the mathematics games')
-parser.add_argument('-m', '--maxvalue', type=int, default=15,
-                    help='Max value for the operation tables (default=15)')
+parser.add_argument('-u', '--upperlim', type=int, default=15,
+                    help='Upper numerical limit for the operation tables (default=15)')
+parser.add_argument('-m', '--minlen', type=int, default=4,
+                    help='Min digit length (default=3)')
 parser.add_argument('-r', '--randomize', action='store_false',
                     help='Decrease difficulty by ordering tables')
 parser.add_argument('--memory', action='store_true',
@@ -20,8 +22,8 @@ args = parser.parse_args()
 
 
 # Initialize classes
-mathGames = Math(maxValue=args.maxvalue, randomize=args.randomize)
-memoryGames = Memory(timer=args.timer)
+mathGames = Math(upperLim=args.upperlim, randomize=args.randomize)
+memoryGames = Memory(timer=args.timer, minLen=args.minlen)
 
 # Options
 games = {

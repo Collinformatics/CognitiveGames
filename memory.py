@@ -19,9 +19,9 @@ rst = '\033[0m'
 
 
 class Memory:
-    def __init__(self, timer):
+    def __init__(self, timer, minLen):
         self.maxLen = 10
-        self.minLen = 5
+        self.minLen = minLen
         self.timer = timer
         self.games = {
             '0': 'Set Parameters',

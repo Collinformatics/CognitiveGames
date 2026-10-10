@@ -19,12 +19,12 @@ rst = '\033[0m'
 
 
 class Math:
-    def __init__(self, maxValue, randomize):
-        self.maxValue = maxValue
-        if self.maxValue <= 3: # Inspections
-            print(f'Max Value (-m / --maxvalue) cannot be ≤ 3\n'
+    def __init__(self, upperLim, randomize):
+        self.upperLim = upperLim
+        if self.upperLim <= 3: # Inspections
+            print(f'Max Value (-u / --upperLim) cannot be ≤ 3\n'
                   f'Resetting to 4')
-            self.maxValue = 4
+            self.upperLim = 4
         self.randomize = randomize
         self.games = {
             '0': 'Set Parameters',
@@ -67,7 +67,7 @@ class Math:
         while True:
             params = {
                 '0': 'Done',
-                '1': f'Max Value: {cyan}{self.maxValue}{rst}',
+                '1': f'Max Value: {cyan}{self.upperLim}{rst}',
                 '2': f'Randomize Values: {cyan}{self.randomize}{rst}'
             }
             print('Change Parameter:')
@@ -82,8 +82,8 @@ class Math:
                 elif x == '1':
                     v = getInput(f'Set a new Max Value (min=4): ', int)
                     if isinstance(v, int):
-                        if v >= 4: # Max Value (-m / --maxvalue) cannot be < 4
-                            self.maxValue = v
+                        if v >= 4: # Max Value (-u / --upperLim) cannot be < 4
+                            self.upperLim = v
                     deleteLine()
                 elif x == '2':
                     self.randomize = not self.randomize
@@ -93,10 +93,10 @@ class Math:
 
 
     @staticmethod
-    def getValues(problemSet, maxValue):
+    def getValues(self, problemSet, upperLim):
         a, b = [], []
         if problemSet == 'multiplication' or problemSet == 'division':
-            a = [v for v in range(3, maxValue + 1, 1) if v not in [10]]
+            a = [v for v in range(3, self.upperLim + 1, 1) if v not in [10]]
             b = [v for v in range(3, 17, 1)]
         elif problemSet == 'double digits':
             v1 = random.randint(1, 9) * 10
@@ -113,19 +113,18 @@ class Math:
                 b.append(v1 + v2)
             random.shuffle(b)
         elif problemSet == 'percentages':
-            a = [v for v in range(100, maxValue, 50)]
+            a = [v for v in range(100, upperLim, 50)]
             b = [v / 100 for v in range(10, 100, 10)]
         elif problemSet == 'fractions':
-            a = [v for v in range(1, maxValue, 1)]
-            b = [v / 100 for v in range(1, maxValue, 1)]
+            a = [v for v in range(1, upperLim, 1)]
+            b = [v / 100 for v in range(1, upperLim, 1)]
         # print(f'a: {a}\nb: {b}')
         return a, len(str(a[-1])), b, len(str(b[-1]))
 
 
     def multiplication(self, drill):
         printBar(drill)
-        val, lenV, num, lenN = self.getValues(problemSet='multiplication',
-                                              maxValue=self.maxValue)
+        val, lenV, num, lenN = self.getValues(problemSet='multiplication')
         nRounds = len(val) - 1
         for r in range(1, nRounds + 1):
             # Select value
@@ -157,8 +156,7 @@ class Math:
 
     def multiplicationDoubleDigit(self, drill):
         printBar(msg=drill)
-        valA, lenA, valB, lenB = self.getValues(problemSet='double digits',
-                                                maxValue=self.maxValue)
+        valA, lenA, valB, lenB = self.getValues(problemSet='double digits')
         nRounds = len(valA) - 1
         for r in range(1, nRounds + 1):
             # Select value
@@ -190,7 +188,7 @@ class Math:
 
     def division(self, drill):
         printBar(msg=drill)
-        div, lenD, num, _ = self.getValues(problemSet='division', maxValue=self.maxValue)
+        div, lenD, num, _ = self.getValues(problemSet='division')
         nRounds = len(div) - 1
         for r in range(1, nRounds + 1):
             # Select value
@@ -228,7 +226,7 @@ class Math:
 
     def percentages(self, drill):
         printBar(msg=drill)
-        val, _, per, _ = self.getValues(problemSet='percentages', maxValue=1000)
+        val, _, per, _ = self.getValues(problemSet='percentages', upperLim=1000)
         nRounds = len(val) - 1
         for r in range(nRounds):
             # Select value
@@ -261,5 +259,5 @@ class Math:
 
     def fractions(self, drill):
         printBar(msg=drill)
-        val, lenV, div, lenD = self.getValues(problemSet='fractions', maxValue=10)
+        val, lenV, div, lenD = self.getValues(problemSet='fractions', upperLim=10)
         nRounds = len(val) - 1
