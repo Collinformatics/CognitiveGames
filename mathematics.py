@@ -92,8 +92,7 @@ class Math:
                 deleteLine(nLines=delLine)
 
 
-    @staticmethod
-    def getValues(self, problemSet, upperLim):
+    def getValues(self, problemSet, upperLim=10):
         a, b = [], []
         if problemSet == 'multiplication' or problemSet == 'division':
             a = [v for v in range(3, self.upperLim + 1, 1) if v not in [10]]
